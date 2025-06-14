@@ -19,6 +19,11 @@ class AppConfig(BaseSettings):
     WHISPER_MODEL: str = "base"
     EVENTSUB_SECRET: str = ""
 
+    PIPER_PATH: str = "/home/mournian/piper/piper"
+    PIPER_VOICE_MODEL: str = "/home/mournian/piper/voices/glados.onnx"
+
+    FASTAPI_URL_TRANSCRIBE: str = "http://127.0.0.1:7002/transcribe"
+
     class Config:
         env_file = ".env"
 

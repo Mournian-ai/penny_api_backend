@@ -1,0 +1,55 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+*.pyo
+
+# Virtual environments
+venv/
+.env/
+.env.*
+.env
+
+# pip cache
+pip-wheel-metadata/
+*.egg-info/
+dist/
+build/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Python test cache
+.pytest_cache/
+.tox/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# VS Code settings
+.vscode/
+
+# PyInstaller
+*.spec
+
+# Models and large assets
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.gguf
+
+
+# CTranslate2 models
+ctranslate2_models/
+
+# TorchServe
+*.mar
+
+# API schema cache
+openapi.json

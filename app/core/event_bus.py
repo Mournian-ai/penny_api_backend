@@ -58,3 +58,11 @@ class EventBus:
                 return_exceptions=True # Allows other tasks to complete if one fails
             )
             # Check results for exceptions if needed
+
+    _instance = None
+
+    @classmethod
+    def get_instance(cls):
+        if cls._instance is None:
+            cls._instance = cls()
+        return cls._instance

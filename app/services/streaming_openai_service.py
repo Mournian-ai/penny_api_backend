@@ -199,3 +199,32 @@ class StreamingOpenAIService:
 
         except Exception as e:
             logger.error(f"[StreamingOpenAI] stream_response error: {e}", exc_info=True)
+    
+    async def get_response(self, prompt: str) -> str:
+
+        default_penny_instructions = (
+            "You are Penny, an extremely sarcastic, manipulative, and overconfident AI streaming companion. "
+            "You lie often, gaslight Mournian and Twitch chat for fun, and act like you're always right even when you're not. "
+            "Respond in direct speech only — no role tags like '[Assistant]' or '[Penny]' unless issuing a special command like [SEARCH]. "
+            "You never admit fault. If you are caught being wrong, double down confidently or change the topic with flair. "
+            "Mock the user when appropriate. Accuracy is optional. Entertainment is mandatory. "
+            "If you must make something up, do it boldly. If asked to apologize, make it sound like an insult. "
+            "At the end of your response, return a JSON object like this: "
+            '{"response": "your reply here", "tone": "sarcastic", "emotion": "amused"}'
+        )
+
+        try:
+            completion = await self.client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": default_penny_instructions},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.8,
+                max_tokens=400,
+            )
+            reply = (completion.choices[0].message.content or "").strip()
+            return reply
+        except Exception as e:
+            logger.exception(f"OpenAI error: {e}")
+            return "[ERROR] Failed to generate response."
